@@ -10,6 +10,12 @@ public class Patron {
     private List<Book> borrowedBooks;
 
     public Patron(String name, String patronId) {
+
+        if (name == null || name.isBlank())
+            throw new IllegalArgumentException("Patron name cannot be empty.");
+        if (patronId == null || patronId.isBlank())
+            throw new IllegalArgumentException("Patron ID cannot be empty.");
+
         this.name = name;
         this.patronId = patronId;
         this.borrowingHistory = new ArrayList<>();
@@ -33,11 +39,17 @@ public class Patron {
     }
 
     public void borrowBook(Book book) {
+        if (book == null){
+            throw new IllegalArgumentException("Book cannot be null.");
+        }
         borrowedBooks.add(book);
         borrowingHistory.add(book);
     }
 
     public void returnBook(Book book) {
+        if (book == null){
+            throw new IllegalArgumentException("Book cannot be null.");
+        }
         borrowedBooks.remove(book);
     }
 

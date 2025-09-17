@@ -8,6 +8,15 @@ public class Book {
     private boolean isAvailable;
 
     public Book(String title, String author, String isbn, int publicationYear) {
+        if (title == null || title.isBlank())
+            throw new IllegalArgumentException("Book title cannot be empty.");
+        if (author == null || author.isBlank())
+            throw new IllegalArgumentException("Author cannot be empty.");
+        if (isbn == null || isbn.isBlank())
+            throw new IllegalArgumentException("ISBN cannot be empty.");
+        if (publicationYear <= 0)
+            throw new IllegalArgumentException("Invalid publication year.");
+
         this.title = title;
         this.author = author;
         this.isbn = isbn;
